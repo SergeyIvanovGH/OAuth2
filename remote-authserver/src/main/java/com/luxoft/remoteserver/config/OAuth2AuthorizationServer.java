@@ -59,8 +59,9 @@ public class OAuth2AuthorizationServer extends AuthorizationServerConfigurerAdap
 
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-		security
-				.checkTokenAccess("hasAuthority('introspection')");
+		security.tokenKeyAccess("permitAll()")
+				.checkTokenAccess("isAuthenticated()");
+//				.checkTokenAccess("hasAuthority('introspection')");
 		;
 	}
 }
