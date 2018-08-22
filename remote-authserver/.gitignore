@@ -16,8 +16,10 @@
 *.iml
 *.ipr
 
-### Maven ###
-.mvn
-mvnw
-mvnw.*
-
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/

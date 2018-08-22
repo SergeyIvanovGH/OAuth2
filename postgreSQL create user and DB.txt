@@ -1,0 +1,12 @@
+Creating user
+sudo -u postgres createuser lux/1qazxsw2
+
+Creating Database
+sudo -u postgres createdb oauthspring
+
+Giving the user a password
+sudo -u postgres psql
+psql=# alter user lux with encrypted password '1qazxsw2';
+
+Granting privileges on database
+psql=# grant all privileges on database oauthspring to lux ;
