@@ -18,7 +18,7 @@ import com.packt.example.clientimplicit.user.UserRepository;
 public class OAuth2ClientTokenSevices implements ClientTokenServices {
 
     @Autowired
-    private UserRepository users;
+    private UserRepository userRepository;
 
     @Override
     public OAuth2AccessToken getAccessToken(OAuth2ProtectedResourceDetails resource, Authentication authentication) {
@@ -46,7 +46,7 @@ public class OAuth2ClientTokenSevices implements ClientTokenServices {
         clientUser.setAccessToken(accessToken.getValue());
         clientUser.setAccessTokenValidity(expirationDate);
 
-        users.save(clientUser);
+        userRepository.save(clientUser);
     }
 
     @Override
@@ -58,13 +58,13 @@ public class OAuth2ClientTokenSevices implements ClientTokenServices {
         clientUser.setRefreshToken(null);
         clientUser.setAccessTokenValidity(null);
 
-        users.save(clientUser);
+        userRepository.save(clientUser);
     }
 
     private ClientUser getClientUser(Authentication authentication) {
         ClientUserDetails loggedUser = (ClientUserDetails) authentication.getPrincipal();
         Long userId = loggedUser.getClientUser().getId();
-        ClientUser clientUser = users.findOne(userId);
+        ClientUser clientUser = userRepository.findOne(userId);
         return clientUser;
     }
 }

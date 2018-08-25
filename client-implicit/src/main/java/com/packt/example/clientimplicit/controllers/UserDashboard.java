@@ -1,7 +1,9 @@
-package com.packt.example.clientimplicit.user;
+package com.packt.example.clientimplicit.controllers;
 
 import java.util.Arrays;
 
+import com.packt.example.clientimplicit.user.ClientUser;
+import com.packt.example.clientimplicit.user.Entry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
@@ -13,7 +15,6 @@ import com.packt.example.clientimplicit.security.ClientUserDetails;
 
 @Controller
 public class UserDashboard {
-    //@formatter:off
 
     @Autowired
     private OAuth2RestTemplate restTemplate;
@@ -58,6 +59,4 @@ public class UserDashboard {
 
         return clientUser;
     }
-
-    //@formatter:on
 }

@@ -21,7 +21,9 @@ public class OAuth2ResourceServer extends ResourceServerConfigurerAdapter {
 		http
 				.authorizeRequests()
 				.anyRequest().authenticated().and()
-				.requestMatchers().antMatchers("/api/**");
+				.requestMatchers().antMatchers("/api/**")
+//				.and().cors()
+		;
 	}
 
 	@Bean

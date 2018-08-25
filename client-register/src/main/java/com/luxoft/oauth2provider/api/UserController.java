@@ -1,21 +1,19 @@
-package com.luxoft.remoteresource.api;
+package com.luxoft.oauth2provider.api;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class UserController {
 
-//	@CrossOrigin
 	@RequestMapping("/api/profile")
 	public ResponseEntity<UserProfile> profile() {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-		String email = user.getUsername() + "@gmail.com";
+		String email = user.getUsername() + "@mailinator.com";
 
 		UserProfile userProfile = new UserProfile();
 		userProfile.setName(user.getUsername());

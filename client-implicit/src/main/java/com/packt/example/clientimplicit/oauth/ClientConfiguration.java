@@ -30,7 +30,7 @@ public class ClientConfiguration {
 
         resourceDetails.setId("oauth2server");
         resourceDetails.setTokenName("oauth_token");
-        resourceDetails.setClientId("clientapp");
+        resourceDetails.setClientId("client_impl");
         resourceDetails.setUserAuthorizationUri("http://localhost:8080/oauth/authorize");
         resourceDetails.setScope(Arrays.asList("read_profile"));
         resourceDetails.setPreEstablishedRedirectUri("http://localhost:9000/callback");

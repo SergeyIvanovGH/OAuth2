@@ -7,4 +7,4 @@ create table client_user(
   refresh_token varchar(100) NULL
 );
 
-insert into client_user (username, password) values ('aeloy', 'abc');
+insert into client_user (username, password) values ('client1', 'abc321');

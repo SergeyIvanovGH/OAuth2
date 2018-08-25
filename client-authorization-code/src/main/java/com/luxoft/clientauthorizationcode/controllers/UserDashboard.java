@@ -1,6 +1,9 @@
-package com.luxoft.clientauthorizationcode.user;
+package com.luxoft.clientauthorizationcode.controllers;
 
 import com.luxoft.clientauthorizationcode.security.ClientUserDetails;
+import com.luxoft.clientauthorizationcode.user.ClientUser;
+import com.luxoft.clientauthorizationcode.user.Entry;
+import com.luxoft.clientauthorizationcode.user.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
@@ -40,7 +43,7 @@ public class UserDashboard {
 	}
 
 	private void tryToGetUserProfile(ModelAndView mv) {
-		String endpoint = "http://localhost:8080/api/profile";
+		String endpoint = "http://localhost:8081/api/profile";
 		try {
 			UserProfile userProfile =
 					restTemplate.getForObject(endpoint, UserProfile.class);

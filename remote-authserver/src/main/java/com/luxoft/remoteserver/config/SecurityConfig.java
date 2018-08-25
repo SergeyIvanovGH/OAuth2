@@ -1,5 +1,6 @@
 package com.luxoft.remoteserver.config;
 
+import com.luxoft.remoteserver.services.ResourseOwnerDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,10 +15,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private DataSource dataSource;
 
-/*
 	@Autowired
 	private ResourseOwnerDetailsService detailsService;
-*/
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -36,7 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.jdbcAuthentication().dataSource(dataSource);
-//				.userDetailsService(detailsService);
+		auth
+//				.jdbcAuthentication().dataSource(dataSource);
+				.userDetailsService(detailsService);
 	}
 }

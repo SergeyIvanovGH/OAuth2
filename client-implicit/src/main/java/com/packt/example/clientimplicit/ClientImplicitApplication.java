@@ -17,7 +17,7 @@ public class ClientImplicitApplication implements ServletContextInitializer {
     @Override
     public void onStartup(ServletContext servletContext)
             throws ServletException {
-        servletContext.getSessionCookieConfig().setName("client-session");
+        servletContext.getSessionCookieConfig().setName("client-impl-session");
     }
 
 }
