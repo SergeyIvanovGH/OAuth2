@@ -1,4 +1,4 @@
-package com.luxoft.clientpassword.oauth;
+package com.luxoft.clientpassword.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +32,7 @@ public class ClientConfiguration {
 		resourceDetails.setId("oauth2server");
 		resourceDetails.setTokenName("oauth_token");
 		resourceDetails.setClientId("client_pass");
-		resourceDetails.setClientSecret("abc123");
+		resourceDetails.setClientSecret("pass123");
 		resourceDetails.setAccessTokenUri("http://localhost:8080/oauth/token");
 		resourceDetails.setScope(Arrays.asList("read_profile"));
 		resourceDetails.setClientAuthenticationScheme(AuthenticationScheme.header);
