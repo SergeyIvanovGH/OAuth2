@@ -1,17 +1,9 @@
-package com.luxoft.remoteresource.api;
+package com.luxoft.clientclientcredentials.user;
 
 public class UserProfile {
 
 	private String name;
 	private String email;
-
-	public UserProfile(String name, String email) {
-		this.name = name;
-		this.email = email;
-	}
-
-	public UserProfile() {
-	}
 
 	public String getName() {
 		return name;

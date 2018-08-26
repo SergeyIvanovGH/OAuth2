@@ -1,9 +1,9 @@
-package com.luxoft.clientauthorizationcode.controllers;
+package com.luxoft.clientrefreshtoken.controllers;
 
-import com.luxoft.clientauthorizationcode.security.ClientUserDetails;
-import com.luxoft.clientauthorizationcode.user.ClientUser;
-import com.luxoft.clientauthorizationcode.user.Entry;
-import com.luxoft.clientauthorizationcode.user.UserProfile;
+import com.luxoft.clientrefreshtoken.security.ClientUserDetails;
+import com.luxoft.clientrefreshtoken.user.ClientUser;
+import com.luxoft.clientrefreshtoken.user.Entry;
+import com.luxoft.clientrefreshtoken.user.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;

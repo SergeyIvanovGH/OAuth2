@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Client App</title>
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+<h1>Dashboard</h1>
+<table class="table table-hover">
+    <tr>
+        <td><h4>Name</h4></td>
+        <td><h4>E-Mail</h4></td>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.name}">name</td>
+        <td th:text="${user.email}">email</td>
+    </tr>
+</table>
+</body>
+</html>

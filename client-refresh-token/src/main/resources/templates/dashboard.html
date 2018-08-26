@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Client App</title>
+</head>
+<body>
+<h1>that's your dashboard</h1>
+<table>
+    <tr>
+        <td><b>That's your entries</b></td>
+    </tr>
+    <tr th:each="entry : ${user.entries}">
+        <td th:text="${entry.value}">value</td>
+    </tr>
+</table>
+<h3>your profile from [Profile Application]</h3>
+<table>
+    <tr>
+        <td><b>name</b></td>
+        <td th:text="${profile.name}">username</td>
+    </tr>
+    <tr>
+        <td><b>email</b></td>
+        <td th:text="${profile.email}">email</td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package com.luxoft.remoteresource;
+package com.luxoft.clientrefreshtoken;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,14 +8,15 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 @SpringBootApplication
-public class RemoteResourceApplication implements ServletContextInitializer {
+public class ClientRefreshTokenApplication implements ServletContextInitializer {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RemoteResourceApplication.class, args);
+
+		SpringApplication.run(ClientRefreshTokenApplication.class, args);
 	}
 
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
-		servletContext.getSessionCookieConfig().setName("resource-session");
+		servletContext.getSessionCookieConfig().setName("client-ref-session");
 	}
 }
