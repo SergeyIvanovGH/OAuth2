@@ -2,33 +2,34 @@
 
 http://localhost:8080/oauth/authorize?client_id=client_code&redirect_uri=http://localhost:9000/callback&response_type=code&scope=read_profile
 
-curl -vX POST --user client_code:code123 http://localhost:8080/oauth/token -H "content-type: application/x-www-form-urlencoded" -d "code=l6AnI1&grant_type=authorization_code&redirect_uri=http://localhost:9000/callback&scope=read_profile"
+curl -vX POST --user client_code:code123 http://localhost:8080/oauth/token -H "content-type: application/x-www-form-urlencoded" -d "code=dXXItO&grant_type=authorization_code&redirect_uri=http://localhost:9000/callback&scope=read_profile"
 
-curl -vX GET http://localhost:8081/api/profile -H "authorization: Bearer e25640c8-9872-4c2c-bb6d-f021d2943835"
+curl -vX GET http://localhost:8081/api/profile -H "authorization: Bearer cfec31f6-8fea-4cca-a3f8-067a2422b171"
 {
-	"name":"adolfo",
-	"email":"adolfo@mailinator.com"
+	"name":"user1",
+	"email":"user1@gmail.com"
 }
 
 
 ------ Implicit
-http://localhost:8080/oauth/authorize?client_id=clientapp&redirect_uri=http://localhost:9000/callback&response_type=token&scope=read_profile&state=xyz
 
-curl -vX GET http://localhost:8080/api/profile -H "authorization: Bearer 9ff6bbde-7fb8-468b-98ff-a899c71c1cb8"
+http://localhost:8080/oauth/authorize?client_id=client_impl&redirect_uri=http://localhost:9000/callback&response_type=token&scope=read_profile&state=xyz
+
+curl -vX GET http://localhost:8081/api/profile -H "authorization: Bearer b6d00bee-a9ff-4503-92df-7a5243c051f7"
 {
-	"name":"adolfo",
-	"email":"adolfo@mailinator.com"
+	"name":"user1",
+	"email":"user1@gmail.com"
 }
 
 
 
 ------ Password
 Request:
-curl -vX POST --user clientapp:123456 http://localhost:8080/oauth/token -H "accept: application/json" -H "content-type: application/x-www-form-urlencoded" -d "grant_type=password&username=adolfo&password=123&scope=read_profile"
+curl -vX POST --user client_pass:pass123 http://localhost:8080/oauth/token -H "accept: application/json" -H "content-type: application/x-www-form-urlencoded" -d "grant_type=password&username=user1&password=123&scope=read_profile"
 
 response:
 {
-	"access_token":"0165c983-fa9c-41c5-b03e-f63f848b3980",
+	"access_token":"970bcd08-05bc-417a-b3da-64c7437be586",
 	"token_type":"bearer",
 	"expires_in":43199,
 	"scope":"read_profile"
@@ -36,23 +37,23 @@ response:
 
 
 Request:
-curl -vX GET http://localhost:8080/api/profile -H "authorization: Bearer 0165c983-fa9c-41c5-b03e-f63f848b3980"
+curl -vX GET http://localhost:8081/api/profile -H "authorization: Bearer 970bcd08-05bc-417a-b3da-64c7437be586"
 
 Response:
 {
-	"name":"adolfo",
-	"email":"adolfo@mailinator.com"
+	"name":"user1",
+	"email":"user1@gmail.com"
 }
 
 
 
 ------ Client credentials
 Request:
-curl -vX POST "http://localhost:8080/oauth/token" --user clientadmin:1234567 -d "grant_type=client_credentials&scope=admin"
+curl -vX POST "http://localhost:8080/oauth/token" --user client_cred:cred123 -d "grant_type=client_credentials&scope=admin"
 
 Response:
 {
-	"access_token":"ff7560a0-3348-4f56-8b2d-aa5ca292ee13",
+	"access_token":"f8aa821d-9abb-4d07-9891-c0b9d4d6bd36",
 	"token_type":"bearer",
 	"expires_in":43199,
 	"scope":"admin"
@@ -60,106 +61,29 @@ Response:
 
 
 Request:
-curl -v "http://localhost:8080/user" --user adolfo:123
-
-response:
-{
-	"name":"adolfo",
-	"email":"adolfo@mailinter.com"
-}
-
-
-
-Request:
-curl -v "http://localhost:8080/api/users" -H "Authorization: Bearer ff7560a0-3348-4f56-8b2d-aa5ca292ee13"
+curl -v "http://localhost:8081/api/users" -H "Authorization: Bearer f8aa821d-9abb-4d07-9891-c0b9d4d6bd36"
 
 Response:
 [
 	{
-		"name":"adolfo",
-		"email":"adolfo@mailinator.com"
+	"name":"user number One",
+	"email":"user1@gmail.com"
 	},
 	{
-		"name":"demigreite",
-		"email":"demigreite@mailinator.com"
+	"name":"user number Two",
+	"email":"user2@gmail.com"
 	},
 	{
-		"name":"jujuba",
-		"email":"jujuba@mailinator.com"
+	"name":"user number Three",
+	"email":"user3@gmail.com"
 	}
 ]
 
 
 
------- Refresh token
+------ refresh token
 
-Request:
-curl -v -X POST --user clientapp:123456 http://localhost:8080/oauth/token -H "accept: application/json" -H "content-type: application/x-www-form-urlencoded" -d "grant_type=password&username=adolfo&password=123&scope=read_profile"
+curl -vX POST --user client_ref:ref123 http://localhost:8080/oauth/token -H "accept: application/json" -H "content-type: application/x-www-form-urlencoded" -d "grant_type=password&username=user1&password=123&scope=read_profile"
 
-
-Response:
-{
-  "access_token": "bac21261-ad3e-4e36-a3ef-b1630c2cb14c",
-  "token_type": "bearer",
-  "refresh_token": "84c65368-15de-42fd-a245-bc6c6213eccf",
-  "expires_in": 119,
-  "scope": "read_profile"
-}
-
-curl -X GET http://localhost:8080/api/profile -H "authorization: Bearer bac21261-ad3e-4e36-a3ef-b1630c2cb14c"
-
-
-
----- Using a relational database to store tokens and client details
-
-Request for authorization_code:
-http://localhost:8080/oauth/authorize?client_id=clientapp&redirect_uri=http://localhost:9000/callback&response_type=code&scope=read_profile
-
-
-
-Request for access_token
-curl -vX POST --user clientapp:123456 http://localhost:8080/oauth/token -H "content-type: application/x-www-form-urlencoded" -d "code=fKx174&grant_type=authorization_code&redirect_uri=http://localhost:9000/callback&scope=read_profile"
-
-Response:
-{
-  "access_token": "d443404f-e086-4076-bb96-5aba777fd86f",
-  "token_type": "bearer",
-  "expires_in": 2999,
-  "scope": "read_profile"
-}
-
-
-
----- Using Redis as a token store
-
-Request:
-curl -vX POST --user clientapp:123456 http://localhost:8080/oauth/token -H "accept: application/json" -H "content-type: application/x-www-form-urlencoded" -d "grant_type=password&username=adolfo&password=123&scope=read_profile"
-
-
-Responce:
-{
-  "access_token":"90820363-08f0-48b6-8b29-988a7cf72f13",
-  "token_type":"bearer",
-  "expires_in":43199,
-  "scope":"read_profile"
-}
-
-
----- Breaking the OAuth 2.0 Provider in the middle
-
-Request:
-curl -vX POST --user clientapp:123456 http://localhost:8080/oauth/token -H "accept: application/json" -H "content-type: application/x-www-form-urlencoded" -d "grant_type=password&username=adolfo&password=123&scope=read_profile"
-
-
-curl -vX GET http://localhost:8081/api/profile -H "authorization: Bearer f995c667-73ca-4a73-98c5-5299bd775548"
-
-
----- Remote validation using token introspection
-
-curl -X POST --user clientapp:123456 http://localhost:8080/oauth/token -H "accept: application/json" -H "content-type: application/x-www-form-urlencoded" -d "grant_type=password&username=adolfo&password=123&scope=read_profile"
-
-{"access_token":"466fd065-917f-4b4a-8657-02ea3e94c71b","token_type":"bearer","expires_in":2999,"scope":"read_profile"}
-
-
-curl -H "Authorization: Bearer 466fd065-917f-4b4a-8657-02ea3e94c71b" "http://localhost:8081/api/profile"
+curl -vX POST http://localhost:8080/oauth/token -H "content-type: application/x-www-form-urlencoded" -d "grant_type=refresh_token&refresh_token=b6ac52c5-b4a6-4328-be21-30917f793f3d" --user client_ref:ref123
 

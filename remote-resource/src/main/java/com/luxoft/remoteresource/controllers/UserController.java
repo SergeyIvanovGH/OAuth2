@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/api")
 public class UserController {
 
-//	@CrossOrigin
+	@CrossOrigin
 	@RequestMapping("/profile")
 	public ResponseEntity<UserProfile> profile() {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
