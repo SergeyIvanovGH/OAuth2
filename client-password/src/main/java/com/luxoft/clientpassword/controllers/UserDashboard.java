@@ -34,15 +34,17 @@ public class UserDashboard {
 
 	@GetMapping("/dashboard")
 	public ModelAndView dashboard() {
+/*
 		ClientUserDetails userDetails = (ClientUserDetails) SecurityContextHolder
 						.getContext().getAuthentication().getPrincipal();
 		ClientUser clientUser = userDetails.getClientUser();
 		clientUser.setEntries(Arrays.asList(
 				new Entry("entry 1"),
 				new Entry("entry 2")));
-
+*/
 		ModelAndView mv = new ModelAndView("dashboard");
-		mv.addObject("user", clientUser);
+//		mv.addObject("user", clientUser);
+
 
 		tryToGetUserProfile(mv);
 

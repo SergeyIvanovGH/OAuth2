@@ -77,3 +77,24 @@ create table oauth_approvals (
 	lastModifiedAt TIMESTAMP
 );
 
+
+-- Own users table
+create table resource_owner(
+  id bigserial primary key,
+  name varchar(200),
+  username varchar(60),
+  password varchar(100),
+  email varchar(100)
+);
+
+
+-- Own client details table
+create table client_user(
+  id bigserial primary key,
+  username varchar(100),
+  password varchar(50),
+  access_token varchar(100) NULL,
+  access_token_validity timestamp NULL,
+  refresh_token varchar(100) NULL
+);
+
